@@ -18,7 +18,7 @@ type Edge struct {
 
 type Vertex struct {
 	Name      string
-	Neighbors []*Vertex
+	Neighbors []string
 
 	costs map[string]float64
 }
@@ -34,11 +34,11 @@ func (g *Graph) Link() map[string]*Vertex {
 	}
 
 	for _, edge := range g.Edges {
-		vertexMap[edge.Vertices[0]].Neighbors = append(vertexMap[edge.Vertices[0]].Neighbors, vertexMap[edge.Vertices[1]])
+		vertexMap[edge.Vertices[0]].Neighbors = append(vertexMap[edge.Vertices[0]].Neighbors, edge.Vertices[1])
 		vertexMap[edge.Vertices[0]].costs[edge.Vertices[1]] = edge.Cost
 
 		if !g.Directed {
-			vertexMap[edge.Vertices[1]].Neighbors = append(vertexMap[edge.Vertices[1]].Neighbors, vertexMap[edge.Vertices[0]])
+			vertexMap[edge.Vertices[1]].Neighbors = append(vertexMap[edge.Vertices[1]].Neighbors, edge.Vertices[0])
 			vertexMap[edge.Vertices[1]].costs[edge.Vertices[0]] = edge.Cost
 		}
 	}

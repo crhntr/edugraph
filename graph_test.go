@@ -19,6 +19,12 @@ func Test(t *testing.T) {
 
 	vm := g.Link()
 
+	t.Log(vm)
+
+	for key, val := range vm {
+		t.Logf("%s: %v", key, val)
+	}
+
 	if vm["B"].Cost("C") != math.Inf(1) {
 		t.Fail()
 	}
